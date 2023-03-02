@@ -1,5 +1,5 @@
 <template>
-    <Layout class-prefix="layout">
+    <Layout class-prefix="layout" :style="{height:h+'px'}">
         <NumberPad @update:value="onUpdateAmount" @submit="saveRecord" />
         <Tabs :dataSource="recordTypeList" :value.sync="record.type"/>
         <div class="notes-wrapper">
@@ -22,12 +22,17 @@ import recordTypeList from '@/constants/recordTypeList';
     components: { Tags, Notes, NumberPad,Tabs}
 })
 export default class Money extends Vue {
+    h=0;
     recordTypeList = recordTypeList
     get recordList() {
         return this.$store.state.recordList;
     }
     created() {
         this.$store.commit('fetchRecords')
+    }
+    mounted(){
+    this.h = document.body.clientHeight; 
+        
     }
     record: RecordItem = {
         tags: [], notes: '', type: '-', amount: 0,
