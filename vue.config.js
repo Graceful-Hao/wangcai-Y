@@ -8,7 +8,7 @@ module.exports = defineConfig({
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/wangcai/'
+    ? '/wangcai-dist/'
     : '/',
   lintOnSave: false,
   chainWebpack: config => {
